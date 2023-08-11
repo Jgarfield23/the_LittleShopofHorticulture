@@ -6,10 +6,10 @@
 // need to update a user profile
 // need to delete a user profile
 const router = require('express').Router();
-const models = require('../models');
+const models = require('../models'); // will replace with actual model name(s)
 const bcrypt = require('bcrypt');
 
-// root route, maybe move to server.js or index.js
+// root route, maybe move to server.js or index.js?
 router.get('/', (req, res) => {
     res.send('Nothing to display yet')
 });
@@ -30,11 +30,12 @@ router.get('/users/:id (or whatever we name the path)', async (req, res) => {
 });
 
 // this can be used to create a new user/signup
-// does it make more sense to have this route be /signup?
+// does it make more sense to have this route be /signup? or '/' since we assume users will login on homepage?
 // should there be a separate route for login/logout?
 router.post('/users', async (req, res) => {
     // create new instance of user model
     try {
+        // newUser will come from schema model
         const newUser = await User.create({
             email: req.body.email,
             password: req.body.password,
@@ -54,8 +55,10 @@ router.post('/users', async (req, res) => {
 });
 
 // this can be used to login a user and create an authenticated session
+// does it make more sense to code login/logout functions as model methods or callback functions within the routes?
 router.post('/users/login', async (req, res) => {
     try {
+        // where: { email. req.body.email } is pulled from model
         const userData = await User.findOne({ where: { email: req.body.email } });
         if (!userData) {
             res.status(404).json({ message: 'Login failed'})
@@ -82,6 +85,7 @@ router.post('/users/login', async (req, res) => {
 // this can be used to logout a user and destroy the authenticated session
 // does this need to be async?
 router.post('/users/logout', async (req, res) => {
+    // this checks for a logged in user session and destroys it
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
@@ -92,13 +96,16 @@ router.post('/users/logout', async (req, res) => {
 });
 
 // this can be used to update a user profile
+// should this be higher up in the code?
 router.put('/users/:id', async (req, res) => {
     try {
+        // change User.update to whatever model name we will use
         const userData = await User.update( req.body, {
             where: {
                 id: req.params.id
             }
         })
+        // if there is no user data return error message
         if (!userData[0]) {
             res.status(404).json({ message: 'Profile not found' })
             return;
@@ -110,4 +117,4 @@ router.put('/users/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router; // export routes
