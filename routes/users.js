@@ -25,7 +25,7 @@ router.get('/users/:id (or whatever we name the path)', async (req, res) => {
         res.status(200).json(userProfile);
     } catch (err) {
         console.error(err)
-        res.status(400).json(err)
+        res.status(400).json('Profile not found')
     }
 });
 
@@ -50,7 +50,7 @@ router.post('/users', async (req, res) => {
         res.status(200).json(newUser);
     } catch (err) {
         console.error(err)
-        res.status(400).json(err)
+        res.status(400).json({ message: 'Cannot create user' })
     }
 });
 
@@ -78,7 +78,7 @@ router.post('/users/login', async (req, res) => {
         
     } catch (err) {
         console.error(err)
-        res.status(400).json(err)
+        res.status(500).json({ message: 'Login failed' })
     }
 });
 
@@ -113,7 +113,7 @@ router.put('/users/:id', async (req, res) => {
         res.status(200).json(userData);
     } catch (err) {
         console.error(err)
-        res.status(400).json(err)
+        res.status(500).json({ message: 'Profile not found' })
     }
 });
 
