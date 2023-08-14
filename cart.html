@@ -29,14 +29,22 @@
     <!-- adding a main tag to contain the content of the page -->
     <main>
         <h1>Your Shopping Cart</h1>
+
+        <!-- adding a list to contain the cart items -->
         <ul class="cart-items">
+
+            <!-- the cart item template-->
             <li>
                 <img src="product1.jpg" alt="Product 1">
                 <div class="item-details">
                     <h2>Product 1</h2>
                     <p>Price: $99.99</p>
                     <p>Quantity: 2</p>
+
+                    <!-- adding a button to remove item from cart -->
                     <button class="remove-item">Remove from Cart</button>
+
+                    <!-- adding a button to move item to favorites and remove from cart-->
                     <button class="move-favorite">Move Item to Favorites</button>
                 </div>
             </li>
@@ -44,8 +52,11 @@
                 <!-- Add more cart items here -->
             </li>
         </ul>
+
         <div class="cart-total">
             <h3>Total: $199.98</h3>
+
+            <!-- adding a button to checkout -->
             <button class="checkout">Checkout</button>
         </div>
     </main>
