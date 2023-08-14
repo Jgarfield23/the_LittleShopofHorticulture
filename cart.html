@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/style.css">
-    <title>Products</title>
+
+    <title>Shopping Cart</title>
 </head>
 <body>
     <header>
@@ -13,22 +14,34 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="productList.html">Products</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="cart.html">Cart</a></li> <!-- Added Cart link -->
             </ul>
         </nav>
     </header>
     <main>
-        <h1>Our Products</h1>
-        <ul class="product-list">
-            <li><a href="productInfo.html">Product 1</a></li>
-            <li><a href="productInfo.html">Product 2</a></li>
-            <!-- Add more products here -->
+        <h1>Your Shopping Cart</h1>
+        <ul class="cart-items">
+            <li>
+                <img src="product1.jpg" alt="Product 1">
+                <div class="item-details">
+                    <h2>Product 1</h2>
+                    <p>Price: $99.99</p>
+                    <p>Quantity: 2</p>
+                </div>
+            </li>
+            <li>
+                <!-- Add more cart items here -->
+            </li>
         </ul>
+        <div class="cart-total">
+            <h3>Total: $199.98</h3>
+            <button class="checkout">Checkout</button>
+        </div>
     </main>
     <footer>
         <!-- company content here -->
         <p>&copy; 2023 Your Company Name. All rights reserved.</p>
     </footer>
-</body>
 
 <!-- changing cursor to pointer for buttons on this page-->
 <style>
@@ -37,8 +50,9 @@
     }
 </style>
 
+</body>
+
 <!-- adding script tag to link to index.js file -->
 <script src="./public/index.js"></script>
-
 
 </html>
