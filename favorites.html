@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="public/style.css">
 
     <!-- adding a page title that is intuitive-->
-    <title>Shopping Cart</title>
+    <title>Favorites</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
                 <li><a href="login.html">LogIn</a></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="productList.html">Products</a></li>
-                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="cart.html">Cart</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
         </nav>
@@ -28,30 +28,27 @@
 
     <!-- adding a main tag to contain the content of the page -->
     <main>
-        <h1>Your Shopping Cart</h1>
-        <ul class="cart-items">
+        <h1>Your Favorite Items</h1>
+        <ul class="favorite-items">
+
             <li>
                 <img src="product1.jpg" alt="Product 1">
-                <div class="item-details">
-                    <h2>Product 1</h2>
-                    <p>Price: $99.99</p>
-                    <p>Quantity: 2</p>
-                </div>
+                <h3>Product 1</h3>
+                <p>Price: $99.99</p>
+                <button class="remove-favorite">Remove from Favorites</button>
             </li>
+
             <li>
-                <!-- Add more cart items here -->
+            <!-- add more favorite items here -->
             </li>
-        </ul>
-        <div class="cart-total">
-            <h3>Total: $199.98</h3>
-            <button class="checkout">Checkout</button>
-        </div>
+    </ul>
     </main>
 
     <footer>
         <!-- company content here -->
         <p>&copy; 2023 Your Company Name. All rights reserved.</p>
     </footer>
+</body>
 
 <!-- changing cursor to pointer for buttons on this page-->
 <style>
@@ -59,8 +56,6 @@
         cursor: pointer;
     }
 </style>
-
-</body>
 
 <!-- adding script tag to link to index.js file -->
 <script src="./public/index.js"></script>
