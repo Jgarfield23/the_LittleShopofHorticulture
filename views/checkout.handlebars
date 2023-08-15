@@ -1,0 +1,18 @@
+{{!< layouts/main}}
+
+{{#section 'main'}}
+  <h1>Checkout</h1>
+  <div class="checkout-summary">
+    <h2>Your Order Summary</h2>
+    {{#each cartItems}}
+      <div class="checkout-item">
+        <h3>{{product.name}}</h3>
+        <p>Price: ${{product.price}}</p>
+      </div>
+    {{/each}}
+    <p>Total: ${{total}}</p>
+  </div>
+  <form action="/place-order" method="post">
+    <button type="submit" class="place-order-btn">Place Order</button>
+  </form>
+{{/section}}

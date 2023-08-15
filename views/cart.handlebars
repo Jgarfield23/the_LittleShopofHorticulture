@@ -1,0 +1,15 @@
+{{!< layouts/main}}
+
+{{#section 'main'}}
+  <h1>Your Cart</h1>
+  <div class="cart-items">
+    {{#each cartItems}}
+      <div class="cart-item">
+        <h3>{{product.name}}</h3>
+        <p>Price: ${{product.price}}</p>
+        <button class="remove-from-cart-btn" data-cart-item-id="{{id}}">Remove</button>
+      </div>
+    {{/each}}
+  </div>
+  <a href="/checkout" class="checkout-btn">Proceed to Checkout</a>
+{{/section}}

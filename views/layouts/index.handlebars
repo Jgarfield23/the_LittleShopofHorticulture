@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Shop of Horrors</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/cart">Cart</a></li>
+        {{#if user}}
+          <li><a href="/orders">Orders</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {{else}}
+          <li><a href="/login">Login</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    {{!-- Content from individual pages will be inserted here --}}
+    {{{body}}}
+  </main>
+  
+  <footer>
+    <!-- Footer content -->
+  </footer>
+  
+  <!-- Include your JavaScript at the bottom -->
+  <script src="./script.js"></script>
+</body>
+</html>
+
+
+<body>
+   {{{body}}} 
+</body>
+</html>
