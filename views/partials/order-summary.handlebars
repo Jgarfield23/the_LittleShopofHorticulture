@@ -1,0 +1,10 @@
+<div class="order-summary">
+  <h2>Order Summary</h2>
+  {{#each cartItems}}
+    <div class="order-item">
+      <h3>{{product.name}}</h3>
+      <p>Price: ${{product.price}}</p>
+    </div>
+  {{/each}}
+  <p>Total: ${{total}}</p>
+</div>
