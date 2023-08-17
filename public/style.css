@@ -4,7 +4,7 @@
     padding: 0;
     display: flex;
     box-sizing: border-box;
-    background-color: purple;
+    background-color: rgb(102, 52, 102);
 }
 
 /* Style for the navigation menu */
@@ -15,19 +15,19 @@ nav {
 
 nav ul {
     list-style: none;
-    display: inline; /* Display list items in a single line */
-    padding: 10px 0; /* Add padding to top and bottom */
+    display: inline; 
+    padding: 10px 0;
 }
 
 nav li {
-    display: inline; /* Display list items in a single line */
-    margin-right: 20px; /* Add spacing between list items */
+    display: inline;
+    margin-right: 20px; 
 }
 
 nav a {
     text-decoration: none;
     color: #fff;
-    padding: 10px; /* Add padding to all sides */
+    padding: 10px; 
     transition: background-color 0.3s;
 }
 
@@ -35,5 +35,21 @@ nav a:hover {
     background-color: #555;
 }
 
+/* Style for the product items */
+.product-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 20px; /* Spacing between items */
+}
+
+.product-item {
+    background-color: rgba(128, 128, 128, 0.3); /* Semi-transparent gray */
+    padding: 20px;
+    border-radius: 5px;
+    flex: 1; /* Distribute space evenly among items */
+    max-width: calc(33.33% - 20px); /* Three items per row with 20px spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 
