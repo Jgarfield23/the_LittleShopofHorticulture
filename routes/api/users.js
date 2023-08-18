@@ -94,6 +94,10 @@ router.route('/:id')
             console.error(err)
             res.status(400).json({ message: 'Profile not found' })
         }
+    })
+    // this can delete a user profile
+    .delete(getUserProfile, async (req, res) => {
+        res.userProfile.destroy();
     }) 
    
 // middleware function to get a user profile by req.params.id
