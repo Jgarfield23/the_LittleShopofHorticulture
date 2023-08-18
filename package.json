@@ -12,12 +12,7 @@
     "devStart": "nodemon server.js"
   },
   
-  "keywords": [
-
-    },
-    "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    },
+  
     "keywords": [
 
     "plants",
@@ -29,6 +24,7 @@
     "author": "room 5",
     "license": "ISC",
     "dependencies": {
+    "connect-session-sequelize": "^7.1.4",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
