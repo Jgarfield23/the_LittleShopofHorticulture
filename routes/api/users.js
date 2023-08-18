@@ -21,7 +21,6 @@ router.get('/', (req, res) => {
 
 // this can be used to create a new user/signup
 // does it make more sense to have this route be /signup? or '/' since we assume users will login on homepage?
-// should there be a separate route for login/logout?
 router.post('/register', async (req, res) => {
     // create new instance of user model
     try {
@@ -98,6 +97,7 @@ router.route('/:id')
     // this can delete a user profile
     .delete(getUserProfile, async (req, res) => {
         res.userProfile.destroy();
+        res.status(200).json({ message: 'Profile deleted' });
     }) 
    
 // middleware function to get a user profile by req.params.id
