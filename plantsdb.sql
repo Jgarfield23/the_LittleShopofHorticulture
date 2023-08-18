@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS plants (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     description TEXT,
-    difficulty_level ENUM('easy', 'medium', 'hard') NOT NULL,
+    difficulty_level ENUM('easy', 'medium', 'haard') NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     image_url TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
