@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- style css link -->
+    <link rel="stylesheet" href="/public/style.css">
+
+    <!-- adding a page title that is intuitive-->
+    <title>Favorites</title>
+</head>
+
+<body>
+    <!-- adding a header tag to contain the navigation bar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="login.html">LogIn</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="productList.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- adding a main tag to contain the content of the page -->
+    <main>
+
+        <!-- adding a heading to the page -->
+        <h1>Your Favorite Items</h1>
+
+        <!-- adding a list to contain the favorite items -->
+        <ul class="favorite-items">
+
+            <!-- the favorite item template-->
+            <li>
+                <img src="product1.jpg" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>Price: $99.99</p>
+
+                <!-- adding a button to remove item from favorites -->
+                <button class="remove-favorite">Remove from Favorites</button>
+            </li>
+
+            <li>
+            <!-- add more favorite items here -->
+            </li>
+    </ul>
+    </main>
+
+    <footer>
+        <!-- company content here -->
+        <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+    </footer>
+</body>
+
+<!-- changing cursor to pointer for buttons on this page-->
+<style>
+    button {
+        cursor: pointer;
+    }
+</style>
+
+<!-- adding script tag to link to index.js file -->
+<script src="./public/index.js"></script>
+
+</html>
