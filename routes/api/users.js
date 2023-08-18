@@ -1,9 +1,6 @@
-// skeleton for admin/user routes, parameters are placeholders
-
+// creating routes for user model that represents a user profile
 // need to sign in users and create an authenticated session
 // need to sign out users and destroy the authenticated session
-// need to create a user profile
-// need to update a user profile
 // need to delete a user profile
 const router = require('express').Router();
 // didn't need to spread {} model name since there is only one model
@@ -13,6 +10,13 @@ const bcrypt = require('bcrypt');
 // root route, maybe move to server.js or index.js?
 router.get('/', (req, res) => {
     res.send('Nothing to display yet')
+    /*
+    // view engine is not set up for this, we can use handlebars or ejs to render an html page- can likely use this for other routes
+
+    res.render('index', (err, html) => {
+        return html ? res.send(html) : res.send(err)
+    }); 
+    */
 });
 
 // this can be used to create a new user/signup
@@ -30,6 +34,7 @@ router.post('/register', async (req, res) => {
             skill: req.body.skill, // skill level with plant care
         });
         res.status(200).json(newUser);
+        // res.redirect('/login')
     } catch (err) {
         console.error(err)
         res.status(400).json({ message: 'Cannot create user' })
@@ -61,69 +66,52 @@ router.post('/login', async (req, res) => {
     }
 });
 
-
-/*router.get('/:id', async (req, res) => {
-    try {
-        const userProfile = await Users.findByPk(req.params.id);
-        if (userProfile === null) {
-            res.status(404).json({ message: 'Profile not found'})
-            return;
-        }
-        res.status(200).json(userProfile)
-    } catch (err) {
-        console.error(err)
-        res.status(500).json({ message: 'Profile not found'})
-    }
-})
-
-// this is supposed to update a user profile but is returning an array
-// need to figure out how to return the updated profile
-router.put('/:id', async (req, res) => {
-    try {
-        const userProfileUpdate = await Users.update( req.body, { where: { id: req.params.id }})
-        if (userProfileUpdate[0] === null) {
-            res.status(404).json({ message: 'Profile not found' })
-            return;
-        }
-        console.log(req.params.id)
-        res.status(200).json(userProfileUpdate)
-    } catch (err) {
-        console.error(err)
-        res.status(500).json({ message: 'Profile not found' })
-    }
-});*/
-
 // combined /:id routes into one route
 // this can retrieve a user profile, should probably render a page with the profile info
-// put route is supposed to update a user profile, but is returning an array
+// put route is supposed to update a user profile, now updates profile based on req.params.id
 router.route('/:id')
-    .get(async (req, res) => {
-        try {
-            const userProfile = await Users.findByPk(req.params.id);
-            if (userProfile === null) {
-                res.status(404).json({ message: 'Profile not found'})
-                return;
-            }
-            res.status(200).json(userProfile)
-            // res.render('profile', { userProfile })
-        } catch (err) {
-            console.error(err)
-            res.status(500).json({ message: 'Profile not found'})
-        }
+    .get(getUserProfile, async (req, res) => {
+        res.json(res.userProfile)
     })
-    .put(async (req, res) => {
+    // this is a patch route that should update specific fields in a user profile, can be used instead of the put route
+    .patch(getUserProfile, async (req, res) => {
+        if (req.body.email != null) {
+            res.userProfile.email = req.body.email;
+        }
+        if (req.body.password != null) {
+            res.userProfile.password = req.body.password;
+        }
+        if (req.body.location != null) {
+            res.userProfile.location = req.body.location;
+        }
+        if (req.body.skill != null) {
+            res.userProfile.skill = req.body.skill;
+        }
         try {
-            const userProfileUpdate = await Users.update( req.body, { where: { id: req.params.id }})
-            if (userProfileUpdate[0] === null) {
-                res.status(404).json({ message: 'Profile not found' })
-                return;
-            }
-            console.log(req.params.id)
-            res.status(200).json(userProfileUpdate)
+            const updatedUserProfile = await res.userProfile.save();
+            res.status(200).json(updatedUserProfile);
         } catch (err) {
             console.error(err)
-            res.status(500).json({ message: 'Profile not found' })
-        }  
-    });
+            res.status(400).json({ message: 'Profile not found' })
+        }
+    }) 
+   
+// middleware function to get a user profile by req.params.id
+async function getUserProfile(req, res, next) {
+    let userProfile;
+    try {
+        userProfile = await Users.findByPk(req.params.id);
+        if (userProfile === null) {
+            res.status(404).json({ message: 'Profile not found' });
+            return;
+        }
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ message: 'Unexpected error'})
+        return;
+    }
+    res.userProfile = userProfile;
+    next();
+}
 
 module.exports = router; // export routes

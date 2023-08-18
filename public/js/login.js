@@ -6,13 +6,15 @@ async function userLogin(event) {
     const password = document.querySelector('#password').value;
 
     if (email && password) {
-        const login = await fetch('/api/users/login', {
+        const response = await fetch('/api/users/login', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json'}
         })
-        if (login.ok) {
+        if (response.ok) {
             document.location.replace('/')
+            alert('You\'re logged in!')
+            console.log('Logged in')
         } else {
             console.error('Login failed')
             alert('Login failed')
