@@ -5,11 +5,21 @@
     "main": "server.js",
     "directories": {
     "test": "tests"
+
+  },
+  "scripts": {
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+  },
+  
+  "keywords": [
+
     },
     "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [
+
     "plants",
     "online",
     "store",
