@@ -91,6 +91,7 @@ footer {
 
 p {
     color: rgb(195, 157, 238);
+    font-weight: 320;
 }
 
 h1 {
@@ -125,6 +126,13 @@ img{
     justify-items: center;
 }
 
+nav img{
+    margin: 1rem;
+    justify-items: center;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+}
+
 button:hover {
     background-color: rgb(140, 140, 239);
 }
@@ -135,6 +143,7 @@ button:hover {
     overflow: hidden;
 }
 
+/*thank you chatgpt.com for the marquee help*/
 .carousel p {
     display: inline-block;
     margin: 0;
