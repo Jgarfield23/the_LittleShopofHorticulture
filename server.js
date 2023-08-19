@@ -6,8 +6,8 @@ const helpers = require("./utils/helpers");
 const routes = require('./routes');
 // merged for user routes and session
 const path = require('path');
-// const session = require('express-session')
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const session = require('express-session')
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./connection/connection');
 
 const PORT = process.env.PORT || 3000;
@@ -18,17 +18,14 @@ const expHbs = expressHandlebars.create({
 
 const app = express();
 
-app.set('view engine', 'handlebars');
+// app.set('view engine', 'handlebars');
 
 app.engine('handlebars', expHbs.engine);
 app.set('view engine', 'handlebars');
 
-app.use(express.static(path.join(__dirname + '/public/')));
-app.use(express.json());
-app.use(routes);
-// app.use(session(userSession))
-
-/* const userSession = {
+// creating user session
+// moved since session needs to be initialized before app.use
+const userSession = {
     secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: 60 * 60 * 2000,
@@ -41,16 +38,15 @@ app.use(routes);
     store: new SequelizeStore({
         db: sequelize,
     })
-}; */
+};
+// app.use for routes needs to be after session
+app.use(express.static(path.join(__dirname + '/public/')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(session(userSession))
+app.use(routes);
 
-app.get('/', (req, res) => {
-    res.render('login', {layout: 'main'})
-});
-
-app.get('/products', (req, res) => {
-  //fetch products from API and pass them to the view
-  res.render('products', {layout: 'main'});
-});
+// moved routes to path-routes.js
 
 sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => {

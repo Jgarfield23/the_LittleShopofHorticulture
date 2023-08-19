@@ -44,6 +44,7 @@ module.exports = db;
 
 const Plant = require('./Plant');
 const PlantCareTips = require('./PlantCareTips');
+// const Users = require('./Users');
 
 Plant.hasMany(PlantCareTips);
 PlantCareTips.belongsTo(Plant);
@@ -51,5 +52,6 @@ PlantCareTips.belongsTo(Plant);
 module.exports = {
     Plant,
     PlantCareTips,
+    // Users
 };
 

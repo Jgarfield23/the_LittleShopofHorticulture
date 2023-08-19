@@ -1,9 +1,9 @@
 // front-end js for user login
 async function userLogin(event) {
-    // event.preventDefault();
+    event.preventDefault();
 
-    const email = document.querySelector('#username').value;
-    const password = document.querySelector('#password').value;
+    const email = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
 
     if (email && password) {
         const response = await fetch('/api/users/login', {
