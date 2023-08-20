@@ -9,6 +9,7 @@ const path = require('path');
 const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./connection/connection');
+const db = require('./connection/connection');
 
 const PORT = process.env.PORT || 3000;
 
@@ -45,9 +46,16 @@ app.get('/', (req, res) => {
     res.render("login");
 });
 
-app.get('/products', (req, res) => {
-  //fetch products from API and pass them to the view
-  res.render('products', {products: fetchedProducts});
+// Fetch plant data from the plants database
+app.get('/api/plants', (req, res) => {
+    db.Plant.findAll()
+        .then((plants) => {
+            res.json(plants);
+        })
+        .catch((error) => {
+            console.error('Error fetching plant data: ', error);
+            res.status(500).json({ error: 'An error occurred while fetching plant data' });
+        });
 });
 
 sequelize.sync({ force: true }).then(() => {
