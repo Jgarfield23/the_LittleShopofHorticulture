@@ -57,7 +57,8 @@ sequelize.sync({ force: false }).then(() => {
     })
 });
 
-app.listen(process.env.PORT || 3000);
+// duplicate app.listen
+// app.listen(process.env.PORT || 3000);
 
 
 
