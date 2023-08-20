@@ -54,6 +54,7 @@ router.post('/login', async (req, res) => {
         }
         req.session.save(() => {
             req.session.loggedIn = true;
+            req.session.user_id = userData.id;
             res.status(200).json({ message: 'Login successful' });
         })
         
@@ -97,7 +98,16 @@ router.route('/:id')
         res.userProfile.destroy();
         res.status(200).json({ message: 'Profile deleted' });
     }) 
-   
+
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).json({ message: 'Logout successful' })
+        })
+    } else {
+        res.status(404).end();
+    }
+})   
 // middleware function to get a user profile by req.params.id
 async function getUserProfile(req, res, next) {
     let userProfile;

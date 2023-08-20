@@ -45,7 +45,7 @@ const userSignup = async (event) => {
 };
 
   // event listener added for login form submit
-document.querySelector('.login-form').addEventListener('submit', userLogin)
+document.getElementById('login-button').addEventListener('click', userLogin)
 
 // add seperate sign-up file?
-document.querySelector('.signup-form').addEventListener('submit', userSignup)
+document.getElementById('signup-button').addEventListener('click', userSignup)

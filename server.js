@@ -29,9 +29,9 @@ const userSession = {
     secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: 60 * 60 * 2000,
-        httpOnly: true,
-        secure: false,
-        sameSite: 'strict',
+        // httpOnly: true,
+        // secure: false,
+        // sameSite: 'strict',
     },
     resave: false,
     saveUninitialized: true,
@@ -39,11 +39,13 @@ const userSession = {
         db: sequelize,
     })
 };
+app.use(session(userSession))
+
 // app.use for routes needs to be after session
 app.use(express.static(path.join(__dirname, '/public/')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(session(userSession))
+
 app.use(routes);
 
 // moved routes to path-routes.js
