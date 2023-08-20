@@ -1,16 +1,16 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./plantsdb');
 
-const PlantCareTips = require('./PlantCareTips');
+const Plant = require('./Plant');
 
-const Plant = sequelize.define('Plant', {
+const PlantCareTips = sequelize.define('PlantCareTips', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    name: {
-        type: DataTypes.STRING,
+    tipDescription: {
+        type: DataTypes.TEXT,
         allowNull: false,
     },
 
@@ -24,6 +24,6 @@ const Plant = sequelize.define('Plant', {
     },
 });
 
-Plant.hasMany(PlantCareTips);
+PlantCareTips.belongsTo(Plant);
 
-module.exports = Plant;
+module.exports = PlantCareTips;
