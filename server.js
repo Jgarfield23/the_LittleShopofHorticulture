@@ -7,8 +7,9 @@ const routes = require('./routes');
 // merged for user routes and session
 const path = require('path');
 const session = require('express-session')
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./connection/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -56,6 +57,7 @@ sequelize.sync({ force: false }).then(() => {
     })
 });
 
+app.listen(process.env.PORT || 3000);
 
 
 
