@@ -1,4 +1,5 @@
 const express = require('express');
+
 const fetch = require('node-fetch');
 const expressHandlebars = require('express-handlebars');
 const helpers = require("./utils/helpers");
@@ -6,8 +7,8 @@ const routes = require('./routes');
 // merged for user routes and session
 const path = require('path');
 const session = require('express-session')
-const sequelize = require('./connection/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sequelize = require('./connection/connection');
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,11 +22,6 @@ const app = express();
 
 app.engine('handlebars', expHbs.engine);
 app.set('view engine', 'handlebars');
-
-
-app.use(express.static('public'));
-app.use(express.json());
-app.use(routes);
 
 // creating user session
 // moved since session needs to be initialized before app.use
@@ -46,16 +42,16 @@ const userSession = {
 
 }; 
 
+// app.use for routes needs to be after session
+app.use(express.static(path.join(__dirname, '/public/')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(session(userSession))
+app.use(routes);
 
-app.get('/', (req, res) => {
-    res.render("login");
-});
 
-app.get('/products', (req, res) => {
-  // Fetch products from API and pass them to the view
-  res.render('products', {products: fetchedProducts});
-});
+
+app.use(session(userSession))
 
 // Move Sequelize sync here
 sequelize.sync({ force: true }).then(() => {
