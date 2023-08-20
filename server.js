@@ -40,7 +40,7 @@ const userSession = {
     })
 };
 // app.use for routes needs to be after session
-app.use(express.static(path.join(__dirname + '/public/')));
+app.use(express.static(path.join(__dirname, '/public/')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session(userSession))
@@ -48,7 +48,7 @@ app.use(routes);
 
 // moved routes to path-routes.js
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
         console.log(`App listening on port ${PORT}`)
     })
