@@ -61,7 +61,7 @@ app.get('/products', (req, res) => {
 // Move Sequelize sync here
 sequelize.sync({ force: true }).then(() => {
 
-};
+});
 // app.use for routes needs to be after session
 app.use(express.static(path.join(__dirname, '/public/')));
 app.use(express.json());
