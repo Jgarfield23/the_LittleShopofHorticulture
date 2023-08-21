@@ -158,3 +158,17 @@ button:hover {
         transform: translateX(-100%);
     }
 }
+
+.product-columns {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-item {
+    width: calc(25% - 20px);
+    margin: 10px;
+    text-align: center;
+}
