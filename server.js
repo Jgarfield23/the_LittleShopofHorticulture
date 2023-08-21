@@ -1,5 +1,4 @@
 const express = require('express');
-
 const fetch = require('node-fetch');
 const expressHandlebars = require('express-handlebars');
 const helpers = require("./utils/helpers");
