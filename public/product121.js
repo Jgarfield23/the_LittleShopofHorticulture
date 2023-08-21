@@ -5,7 +5,10 @@ const plantData = [
         description: "A sturdy, upright plant with long, sword-like leaves that come in various patterns and colors.",
         difficulty_level: "easy",
         price: 14.99,
-        image_url: "https://www.gardendesign.com/pictures/images/900x705Max/site_3/snsevieria-trifasciata-laurentii-houseplant-green-leaves-shutterstock-com_14449.jpg"
+        image_url: "https://www.gardendesign.com/pictures/images/900x705Max/site_3/snsevieria-trifasciata-laurentii-houseplant-green-leaves-shutterstock-com_14449.jpg",
+        tip_description_water: "Watering: Allow the soil to dry out between waterings.",
+        tip_description_care: "Care Tips: Tolerant of neglect, great air purifier.",
+        tip_description_climate: "Climate: Can tolerate a wide range of climates."
     },
     {
         id: 122,
@@ -161,18 +164,31 @@ const plantData = [
     }
 ];
 
-const source = document.querySelector('#plant-template').innerHTML;
-const template = Handlebars.compile(source);
-const renderedHtml = template({ plantData: plantData });
-
-const plantList = document.querySelector('#plantList');
-plantList.innerHTML = renderedHtml;
+const productId = 121;
+const product = plantData.find(item => item.id === productId);
 
 document.addEventListener("DOMContentLoaded", function() {
-    const source = document.querySelector('#plant-template').innerHTML;
-    const template = Handlebars.compile(source);
-    const renderedHtml = template({ plantData });
+    const productName = document.querySelector('#product-name');
+    const productImage = document.querySelector('#product-image');
+    const productDescription = document.querySelector('#product-description');
+    const productTip = document.querySelector('#product-tip');
+    const productDifficulty = document.querySelector('#product-difficulty');
+    const productPrice = document.querySelector('#product-price');
 
-    const plantList = document.querySelector('#plantList');
-    plantList.innerHTML = renderedHtml;
+    productName.textContent = product.name;
+    productImage.src = product.image_url;
+    productDescription.textContent = `Description: ${product.description}`;
+    productTip.innerHTML = `${product.tip_description_water}<br>${product.tip_description_care}<br>${product.tip_description_climate}`;
+    productDifficulty.textContent = `Difficulty: ${product.difficulty_level}`;
+    productPrice.textContent = `Price: $${product.price.toFixed(2)}`;
+
+    const addFavoriteButton = document.querySelector('.add-favorite');
+    addFavoriteButton.addEventListener('click', () => {
+        // Add handle adding to favorites here
+    });
+
+    const addToCartButton = document.querySelector('.add-to-cart');
+    addToCartButton.addEventListener('click', () => {
+        // Add handle adding to cart here
+    });
 });

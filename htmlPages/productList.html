@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- style css link -->
     <link rel="stylesheet" href="../public/style.css">
 
-    <!-- adding a page title that is intuitive-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
     <title>Products</title>
 </head>
 
@@ -35,32 +33,37 @@
     <main>
         <div class="flex" style="display: inline-flex; ">
             <img src="../public/images/logo_png_300ppi.png" alt="Logo" style="width: 100px; height: 90px;">
-        <h1>Our Products</h1>
         </div>
 
         <ul class="product-list">
-
-        <h1>Plant Store - Products</h1>
-        <ul id="plantList"></ul>
-
+            <h1>Plant Store - Products</h1>
+            <ul id="plantList"></ul>
+        </ul>
     </main>
 
     <footer>
-        <!-- company content here -->
-        <p>&copy; 2023 Company Name. All rights reserved.</p>
+        <p>&copy; 2023 Floral Fiends. All rights reserved.</p>
     </footer>
 
+    <script id="plant-template" type="text/x-handlebars-template">
+        <ul class="product-columns">
+            {{#each plantData}}
+                <li class="product-item">
+                    <a href="product{{id}}.html">
+                        <img src="{{image_url}}" alt="{{name}}" style="max-width: 100px;">
+                        <p><strong>{{name}}</strong><br>{{difficulty_level}}<br>${{price}}</p>
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    </script>    
+    
     <script src="../public/productsList.js"></script>
 
+    <style>
+        button {
+            cursor: pointer;
+        }
+    </style>
 </body>
-
-<!-- changing cursor to pointer for buttons on this page-->
-<style>
-    button {
-        cursor: pointer;
-    }
-</style>
-
-
-
 </html>
