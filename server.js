@@ -8,6 +8,7 @@ const path = require('path');
 const session = require('express-session')
 const sequelize = require('./connection/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const secretKey = 'your_generated_secret_key';
 
 
 const PORT = process.env.PORT || 3000;
