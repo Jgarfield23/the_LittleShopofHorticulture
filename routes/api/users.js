@@ -1,30 +1,22 @@
 // creating routes for user model that represents a user profile
 // need to sign in users and create an authenticated session
 // need to sign out users and destroy the authenticated session
-// need to delete a user profile
 const router = require('express').Router();
 // didn't need to spread {} model name since there is only one model
 const Users = require('../../models/Users'); // will replace with actual model name(s)
 const bcrypt = require('bcrypt');
 
-// root route, maybe move to server.js or index.js?
-router.get('/', (req, res) => {
-    res.send('Nothing to display yet')
-    /*
-    // view engine is not set up for this, we can use handlebars or ejs to render an html page- can likely use this for other routes
-
-    res.render('index', (err, html) => {
-        return html ? res.send(html) : res.send(err)
-    }); 
-    */
-});
-
 // this can be used to create a new user/signup
 // does it make more sense to have this route be /signup? or '/' since we assume users will login on homepage?
 router.post('/register', async (req, res) => {
     // create new instance of user model
+
     try {
-        // newUser will go to schema model, hashed password should be created here
+        /*const user = await Users.findOne({ where: { email: req.body.email }});
+        if (user) {
+            res.status(409).json({ message: 'User already exists' });
+            return;
+        } */    
         // const bcryptPassword = bcrypt.hashSync(req.body.password, 10)
         const newUser = await Users.create({
             email: req.body.email,
@@ -32,8 +24,11 @@ router.post('/register', async (req, res) => {
             location: req.body.location, // pull zip code from provided address
             skill: req.body.skill, // skill level with plant care
         });
-        res.status(200).json(newUser);
-        // res.redirect('/login')
+        req.session.save(() => {
+            req.session.loggedIn = true;
+            res.status(200).json(newUser);
+        })
+        
     } catch (err) {
         console.error(err)
         res.status(400).json({ message: 'Cannot create user' })
@@ -57,7 +52,10 @@ router.post('/login', async (req, res) => {
             res.status(400).json({ message: 'Login failed' })
             return;
         }
-        res.status(200).json({ message: 'Login successful' });
+        req.session.save(() => {
+            req.session.loggedIn = true;
+            res.status(200).json({ message: 'Login successful' });
+        })
         
     } catch (err) {
         console.error(err)

@@ -1,0 +1,23 @@
+<h1>Welcome to Our Online Store</h1>
+<p>Explore our wide range of products and find great deals!</p>
+{{#if loggedIn}}
+    <p>You are logged in!</p>
+    {{else}}
+ <div id="signup-form">
+    <h3>Sign Up For Membership!</h3>
+    <form class="signup-form" action="/login" method="POST" id="signup-form">
+        <label for="email" style="display: block">Email:
+            <input type="email" id="email-signup" name="email-signup" required>
+        </label>
+        
+        <label for="password" style="display: block">Password:
+            <input type="password" id="password-signup" name="password-signup" required>
+        </label>
+        
+        <!--<label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+        submit form button-->
+        <button type="submit" id="signup-button" style="display: block">Sign Up</button>
+    </form>
+</div>
+{{/if}}
