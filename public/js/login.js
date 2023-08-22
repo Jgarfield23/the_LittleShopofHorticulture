@@ -16,7 +16,7 @@ const userLogin = async (event) => {
             console.log('Logged in')
         } else {
             console.error('Login failed')
-            alert('Login failed')
+            alert(response.statusText)
         }
     }
 };
