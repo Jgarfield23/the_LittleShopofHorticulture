@@ -48,4 +48,4 @@ const userSignup = async (event) => {
 document.getElementById('login-button').addEventListener('click', userLogin)
 
 // add seperate sign-up file?
-document.getElementById('signup-button').addEventListener('click', userSignup)
+// document.getElementById('signup-button').addEventListener('click', userSignup)
