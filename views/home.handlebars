@@ -1,8 +1,9 @@
 <h1>Welcome to Our Online Store</h1>
 <p>Explore our wide range of products and find great deals!</p>
+    <img src="/images/logo_BG_final.png" style="width: 30%; height: auto;"></img>
 {{#if loggedIn}}
     <p>You are logged in!</p>
-    {{else}}
+ {{else}}
  <div id="signup-form">
     <h3>Sign Up For Membership!</h3>
     <form class="signup-form" action="/login" method="POST" id="signup-form">
@@ -14,10 +15,11 @@
             <input type="password" id="password-signup" name="password-signup" required>
         </label>
         
-        <!--<label for="confirm-password">Confirm Password:</label>
+        <label for="confirm-password">Confirm Password:</label>
         <input type="password" id="confirm-password" name="confirm-password" required>
-        submit form button-->
+        
         <button type="submit" id="signup-button" style="display: block">Sign Up</button>
     </form>
 </div>
 {{/if}}
+

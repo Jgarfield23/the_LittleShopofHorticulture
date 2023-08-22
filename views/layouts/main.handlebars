@@ -23,7 +23,7 @@
         <li><a href="/cart">Cart</a></li>
         {{#if loggedIn}} <!-- If user is loggedIn -->
           <li><a href="/orders">Orders</a></li>
-          <li><a href="/logout">Logout</a></li>
+          <li><a href="/logout" id="logout">Logout</a></li>
         {{else}}
           <li><a href="/login">Login</a></li>
         {{/if}}
@@ -32,16 +32,16 @@
   </header>
   
   <main>
-    {{{ body }}}
-    {{body}}
-    <h1>Welcome to Our Online Store</h1>
+   <!--{{{ body }}}-->
+    {{{body}}}
+   <!-- <h1>Welcome to Our Online Store</h1>
     <p>Explore our range of products and find great deals!</p>
-    <img src="/public/images/logo_BG_final.png" style="width: 30%; height: auto;"></img>
+    <img src="/public/images/logo_BG_final.png" style="width: 30%; height: auto;"></img> -->
 
     {{!-- Content from individual pages will be inserted here --}}
-    {{{body}}}
+   <!-- {{{body}}} 
       <h1>Welcome to Our Online Store</h1>
-      <p>Explore our wide range of products and find great deals!</p>
+      <p>Explore our wide range of products and find great deals!</p> -->
 
   </main>
 
@@ -53,7 +53,12 @@
 
   </footer>
     <!-- Include your JavaScript at the bottom -->
-  <script src="/js/login.js"></script>
+    
+{{#if loggedIn}}
+<script src="/js/logout.js"></script> 
+{{/if}}
+   
+  
   </body>
 
   <style>

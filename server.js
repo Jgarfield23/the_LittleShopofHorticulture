@@ -1,5 +1,4 @@
 const express = require('express');
-
 const fetch = require('node-fetch');
 const expressHandlebars = require('express-handlebars');
 const helpers = require("./utils/helpers");
@@ -7,9 +6,14 @@ const routes = require('./routes');
 // merged for user routes and session
 const path = require('path');
 const session = require('express-session')
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./connection/connection');
+
 const db = require('./connection/connection');
+
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -30,9 +34,9 @@ const userSession = {
     secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: 60 * 60 * 2000,
-        httpOnly: true,
-        secure: false,
-        sameSite: 'strict',
+        // httpOnly: true,
+        // secure: false,
+        // sameSite: 'strict',
     },
     resave: false,
     saveUninitialized: true,
@@ -40,11 +44,13 @@ const userSession = {
         db: sequelize,
     })
 };
+app.use(session(userSession))
+
 // app.use for routes needs to be after session
 app.use(express.static(path.join(__dirname, '/public/')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(session(userSession))
+
 app.use(routes);
 
 // moved routes to path-routes.js
@@ -67,6 +73,8 @@ sequelize.sync({ force: false }).then(() => {
     })
 });
 
+// duplicate app.listen
+// app.listen(process.env.PORT || 3000);
 
 
 
