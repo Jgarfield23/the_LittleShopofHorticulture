@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- style css link -->
-    <link rel="stylesheet" href="/public/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- adding a page title that is intuitive-->
+    <link rel="stylesheet" href="../public/style.css">
+
     <title>Product Details</title>
 </head>
 
 <body>
 
-    <!-- adding a header tag to contain the navigation bar -->
     <header>
         <div class="carousel">
             <p>Sign Up now with your email for a  terrifying website wide 10% discount!</p>
@@ -30,40 +29,35 @@
         </nav>
     </header>
 
-    <!-- adding a main tag to contain the content of the page -->
-    <main>
-
-        <!-- adding product info template-->
-        <div class="flex" style="display: inline-flex; ">
-            <img src="/public/images/logo_png_300ppi.png" alt="Logo" style="width: 100px; height: 90px;"></img>
+<main>
+    <div class="flex" style="display: inline-flex; ">
+        <img src="../public/images/logo_png_300ppi.png" alt="Logo" style="width: 100px; height: 90px;">
         <h1>Product Details</h1>
-        </div>
-        <h2>Product Name</h2>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <p>Price: $99.99</p>
+    </div>
 
-        <!-- adding a button to add item to favorites -->
-        <button class="add-favorite">Add to Favorites</button>
+    <h2 id="product-name">Product Name</h2>
+    <img id="product-image" src="" alt="Product Image" style="max-width: 300px;">
+    <p id="product-description">Description: </p>
+    <p id="product-tip"></p>
+    <p id="product-difficulty">Difficulty: </p>
+    <p id="product-price">Price: </p>
 
-        <!-- adding a button to add item to cart -->
-        <button>Add to Cart</button>
-    </main>
+    <button class="add-favorite">Add to Favorites</button>
+    <button class="add-to-cart">Add to Cart</button>
+</main>
 
     <footer>
-        <!-- company content here -->
-        <p>&copy; 2023 Company Name. All rights reserved.</p>
+        <p>&copy; 2023 Floral Fiends. All rights reserved.</p>
     </footer>
 
 </body>
 
-<!-- changing cursor to pointer for buttons on this page-->
 <style>
     button {
         cursor: pointer;
     }
 </style>
 
-<!-- adding script tag to link to index.js file -->
-<script src="./public/index.js"></script>
+<script src="../public/product121.js"></script>
 
 </html>

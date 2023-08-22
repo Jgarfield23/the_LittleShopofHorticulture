@@ -7,7 +7,11 @@ const routes = require('./routes');
 const path = require('path');
 const session = require('express-session')
 const sequelize = require('./connection/connection');
+
+const db = require('./connection/connection');
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
 
 
 
@@ -50,6 +54,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 // moved routes to path-routes.js
+
+// Fetch plant data from the plants database
+app.get('/api/plants', (req, res) => {
+    db.Plant.findAll()
+        .then((plants) => {
+            res.json(plants);
+        })
+        .catch((error) => {
+            console.error('Error fetching plant data: ', error);
+            res.status(500).json({ error: 'An error occurred while fetching plant data' });
+        });
+});
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
