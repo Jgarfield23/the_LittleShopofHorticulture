@@ -52,6 +52,4 @@ Users.init(
         }
 );
 
-console.log(Users === sequelize.models.Users);
-
 module.exports = Users;

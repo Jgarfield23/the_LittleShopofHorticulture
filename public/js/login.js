@@ -26,11 +26,13 @@ const userSignup = async (event) => {
 
     const email = document.getElementById('email-signup').value.trim();
     const password = document.getElementById('password-signup').value.trim();
+    const location = document.getElementById('location-signup').value.trim();
+    const skill = document.getElementById('skill-signup').value.trim();
 
-    if (email && password) {
+    if (email && password && location && skill) {
         const response = await fetch('/api/users/register', {
             method: 'POST',
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password, location, skill }),
             headers: { 'Content-Type': 'application/json'}
         })
         if (response.ok) {
@@ -39,7 +41,7 @@ const userSignup = async (event) => {
             console.log('Account created')
         } else {
             console.error('Could not create account')
-            alert('Could not create account')
+            alert(response.statusText)
         }
     }
 };
@@ -48,4 +50,4 @@ const userSignup = async (event) => {
 document.getElementById('login-button').addEventListener('click', userLogin)
 
 // add seperate sign-up file?
-// document.getElementById('signup-button').addEventListener('click', userSignup)
+document.getElementById('signup-button').addEventListener('click', userSignup)

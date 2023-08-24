@@ -6,37 +6,38 @@ const router = require('express').Router();
 const Users = require('../../models/Users'); // will replace with actual model name(s)
 const bcrypt = require('bcrypt');
 
-// this can be used to create a new user/signup
-// does it make more sense to have this route be /signup? or '/' since we assume users will login on homepage?
 router.post('/register', async (req, res) => {
     // create new instance of user model
 
     try {
-        /*const user = await Users.findOne({ where: { email: req.body.email }});
-        if (user) {
-            res.status(409).json({ message: 'User already exists' });
-            return;
-        } */    
         // const bcryptPassword = bcrypt.hashSync(req.body.password, 10)
         const newUser = await Users.create({
             email: req.body.email,
             password: req.body.password,
-            location: req.body.location, // pull zip code from provided address
-            skill: req.body.skill, // skill level with plant care
+            location: req.body.location,
+            skill: req.body.skill
         });
+
+        const user = newUser.get({ plain: true })
         req.session.save(() => {
             req.session.loggedIn = true;
-            res.status(200).json(newUser);
+            req.session.user_id = newUser.id;
+            req.session.email = newUser.email;
+            // added res.render to render new user profile page
+            res.render('profile', {
+                ...user,
+                loggedIn: req.session.loggedIn,
+                message: 'Account created'
+              }) 
         })
         
+        console.log(newUser)
     } catch (err) {
         console.error(err)
         res.status(400).json({ message: 'Cannot create user' })
     }
 });
 
-// this can be used to login a user and create an authenticated session
-// does it make more sense to code login/logout functions as model methods or callback functions within the routes?
 router.post('/login', async (req, res) => {
     try {
         // where: { email. req.body.email } is pulled from model

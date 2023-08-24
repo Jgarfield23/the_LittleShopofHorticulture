@@ -1,0 +1,15 @@
+<div>
+    <h1>Profile</h1>
+    <card id="profile">
+        <ul>
+            <li>Registered Email Address: {{email}}</li>
+            <li>Password: {{password}}</li>
+            <li>Location (US Zip Code): {{location}}</li>
+            <li>Skill Level: {{skill}}</li>
+        </ul>
+    </card>
+</div>
+{{#if message}}
+    <div class="alert alert-danger">{{message}}</div>
+{{/if}}
+<script src="/js/login.js"></script>

@@ -6,20 +6,26 @@
  {{else}}
  <div id="signup-form">
     <h3>Sign Up For Membership!</h3>
-    <form class="signup-form" action="/login" method="POST" id="signup-form">
+    <form class="signup-form" method="post" action="/api/users/register" id="signup-form">
         <label for="email" style="display: block">Email:
-            <input type="email" id="email-signup" name="email-signup" required>
+            <input type="email" id="email-signup" name="email" required>
         </label>
         
         <label for="password" style="display: block">Password:
-            <input type="password" id="password-signup" name="password-signup" required>
+            <input type="password" id="password-signup" name="password" required>
         </label>
-        
-        <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" name="confirm-password" required>
+
+        <label for="location" style="display: block">Location (US Zip Code):
+            <input type="location" id="location-signup" name="location" required>
+        </label>
+
+        <label for="skill-level" style="display: block">Skill Level:
+            <input type="skill-level" id="skill-signup" name="skill" required>
+        </label>
         
         <button type="submit" id="signup-button" style="display: block">Sign Up</button>
     </form>
 </div>
+<script src="/js/login.js"></script>
 {{/if}}
 
