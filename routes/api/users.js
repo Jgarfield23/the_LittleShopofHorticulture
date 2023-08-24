@@ -10,10 +10,10 @@ router.post('/register', async (req, res) => {
     // create new instance of user model
 
     try {
-        // const bcryptPassword = bcrypt.hashSync(req.body.password, 10)
+        const bcryptPassword = bcrypt.hashSync(req.body.password, 10)
         const newUser = await Users.create({
             email: req.body.email,
-            password: req.body.password,
+            password: bcryptPassword,
             location: req.body.location,
             skill: req.body.skill
         });
@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
             res.render('profile', {
                 ...user,
                 loggedIn: req.session.loggedIn,
-                message: 'Account created'
+                message: 'Account created, your password has been encrypted!'
               }) 
         })
         
@@ -49,6 +49,7 @@ router.post('/login', async (req, res) => {
         }
         // validate password, should compare to hashed password in database
         const validPassword = await bcrypt.compare(req.body.password, userData.password);
+
         if (validPassword === null) {
             res.status(400).json({ message: 'Login failed' })
             return;
